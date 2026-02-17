@@ -1,0 +1,20 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Main / Pull requests build
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Checkout code
+        uses: cloudbees-io/checkout@v1
+      - name: Build with Maven
+        uses: docker://maven:3.9-eclipse-temurin-25
+        run: |
+          mvn --no-transfer-progress verify
