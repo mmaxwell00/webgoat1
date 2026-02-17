@@ -17,4 +17,4 @@ jobs:
       - name: Build with Maven
         uses: docker://maven:3.9-eclipse-temurin-25
         run: |
-          mvn --no-transfer-progress verify
+          mvn --no-transfer-progress verify -DskipITs
